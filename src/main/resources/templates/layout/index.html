@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 목록</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #008D62;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #005d43;
+        }
+    </style>
+</head>
+<body>
+
+<h2>게시글 목록</h2>
+<table>
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>제목</th>
+        <th>작성일자</th>
+        <th>수정일자</th>
+        <th>조회수</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="board : ${boards}">
+        <td th:text="${board.bno}"></td>
+        <td><a th:href="@{/board/view/{bno}(bno=${board.bno})}" th:text="${board.title}"></a></td>
+        <td th:text="${#temporals.format(board.regDate, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${#temporals.format(board.modDate, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${board.viewContent}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="write.html">글쓰기</a>
+
+</body>
+</html>

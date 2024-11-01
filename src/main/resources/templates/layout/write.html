@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>글쓰기</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+<h2>글쓰기</h2>
+<form action="#" th:action="@{/board/write}" th:object="${board}" method="post">
+    <label>제목</label>
+    <input type="text" th:field="*{title}" required /> <!-- 필드 이름 수정 -->
+
+    <label>내용</label>
+    <textarea th:field="*{content}" required></textarea> <!-- 필드 이름 수정 -->
+
+    <button type="submit">제출</button>
+</form>
+
+</body>
+</html>
